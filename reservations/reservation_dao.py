@@ -10,10 +10,10 @@ class ReservationDao:
             valeurs = (non_event, nom_util, place)
             cls.cursor.execute(requete, valeurs)
             cls.connexion.commit()
-            sms = f"Mr/Mme {nom_util} Votre réservation pour l'evenement {non_event}  a été effectuée avec succès !"
+            message= f"Mr/Mme {nom_util} Votre réservation pour l'evenement {non_event}  a été effectuée avec succès !"
         except Exception as e:
-            sms = f"Une erreur s'est produite lors de votre réservation : {e}"
-        return sms
+            message= f"Une erreur s'est produite lors de votre réservation : {e}"
+        return message
 
 
     @classmethod
