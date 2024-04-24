@@ -1,0 +1,25 @@
+{% extends 'default.html' %}
+
+{% block title %}Nos evenements{% endblock %}
+
+{% block content %}
+
+<h1>Veillez choisir un evenement en cliquant dessus!</h1>
+<h1>
+  <div style="display: flex; justify-content: space-between;">
+    <form method="GET" action="{{ url_for('formulaire') }}">
+      <input type="submit" name="evenement" value="Cinéma">
+    </form>
+    <form method="GET" action="{{ url_for('formulaire_Diner') }}">
+      <input type="submit" name="evenement" value="Dîner">
+    </form>
+    <form method="GET" action="{{ url_for('formulaire_Con') }}">
+      <input type="submit" name="evenement" value="Concert">
+    </form>
+  </div>
+</h1>
+ <img src="https://cdn.futura-sciences.com/cdn-cgi/image/width=1920,quality=60,format=auto/sources/samsung-galaxy-s23-reconditionne.jpg" alt=""height="auto"width=100%>
+</form>
+ 
+
+  {% endblock %}
