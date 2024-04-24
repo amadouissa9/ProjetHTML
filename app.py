@@ -37,17 +37,16 @@ def formulaire_Con():
 
 @app.route("/ajouter_reservation", methods=['POST', 'GET'])
 def ajouter_reservation():
-        
-    #if 'username' not in session:
-        #return redirect(url_for('login'))
-
         message = None
         employe = None
-
-        if request.method == "POST":
-            req = request.form 
+        req = request.form
+        print(req)
+        message = None
+        employe = None
+        print("Methode.utilisee:" , request.method)
+        if request.method == "POST": 
             nom_event = req['film']
-            nom_util = req['Nom_util']
+            nom_util = req['nom_util']
             placeD = req['place']
             if nom_event == 'Selectionnez Votre Films' or nom_util == '' or placeD == '':
                 message = "error"
