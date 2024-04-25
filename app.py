@@ -34,25 +34,19 @@ def formulaire_Diner():
 def formulaire_Con():
     return render_template("formulaire_con.html")
 
-
 @app.route("/ajouter_reservation", methods=['POST', 'GET'])
 def ajouter_reservation():
-        message = None
-        employe = None
-        req = request.form
-        print(req)
-        message = None
-        employe = None
-        print("Methode.utilisee:" , request.method)
-        if request.method == "POST": 
-            nom_event = req['film']
-            nom_util = req['nom_util']
-            placeD = req['place']
-            if nom_event == 'Selectionnez Votre Films' or nom_util == '' or placeD == '':
-                message = "error"
-            else:
-                employe = employe(nom_event, nom_util, placeD)
-                ajouter = ReservationDao()
-                message = ajouter.ajouter_reservation(employe)
-                print(message)
-        return render_template("form.html", message=message, employe=employe)
+    message = None
+    employe = None
+    if request.method == "POST":
+        nom_event = request.form.get('film')
+        nom_util = request.form.get('nom_util')
+        place = request.form.get('place')
+        if not nom_event or not nom_util or not place:
+            message = "Tous les champs doivent être remplis"
+        else:
+            #employe = {'nom_event': nom_event, 'nom_util': nom_util, 'place': place}
+            ajouter = ReservationDao()
+            message = ajouter.ajouter_reservation( nom_event,nom_util,place)
+            print(message)
+    return render_template("form.html", message=message, employe=employe)

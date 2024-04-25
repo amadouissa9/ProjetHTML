@@ -4,13 +4,13 @@ class ReservationDao:
     cursor = connexion.cursor()
         
     @classmethod
-    def ajouter_reservation(cls , non_event,nom_util,place):
+    def ajouter_reservation(cls , nom_event,nom_util,place):
         requete = "INSERT INTO reservation (Nom_Event, Nom_util, Nombreplaces_event) VALUES (%s, %s, %s)"
         try:
-            valeurs = (non_event, nom_util, place)
+            valeurs = (nom_event, nom_util, place)
             cls.cursor.execute(requete, valeurs)
             cls.connexion.commit()
-            message= f"Mr/Mme {nom_util} Votre réservation pour l'evenement {non_event}  a été effectuée avec succès !"
+            message= f"Mr/Mme {nom_util} Votre réservation pour l'evenement {nom_event}  a été effectuée avec succès !"
         except Exception as e:
             message= f"Une erreur s'est produite lors de votre réservation : {e}"
         return message
